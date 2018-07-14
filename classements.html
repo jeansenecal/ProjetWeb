@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+<?php
+session_start();
+ 
+  include('DataLayer/BusinessLayer/connection.php');
+  
+  if(!isset($_SESSION['util'])) {
+  header("location: login.php");
+  } 
+?>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dota Tournaments</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/blog-home.css" rel="stylesheet">
+    <link href="css/table.css" rel="stylesheet">
+
+ 
+
+</head>
+
+<body>
+    <!-- Navigation -->
+		<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Dota</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="index.php">Acceuil </a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">Materia </a>
+						<div class="dropdown-menu ">
+							<ul class="multi-column-dropdown">
+								<li class="dropdown-header">Upcoming</li>
+								<li><a href="tournois1.php"><img alt="" src="images/tournois/summit8s.png" width="30" height="20"> Summit 8</a></li><br/>
+								<li><a href="tournois2.php"><img alt="" src="images/tournois/mdlmacau.jpg" width="30" height="20"> MDL Macau</a></li><br/>
+								<li><a href="tournois3.php"><img alt="" src="images/tournois/DHDLS8.png" width="30" height="20"> DreamLeague 8</a></li><br/>										
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="classements.php">Classements<span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					
+					<?php
+					   if(isset($_SESSION['util'])) {
+					  ?>
+						<a href="DataLayer/BusinessLayer/deconnection.php" class="btn btn-danger">Déconnexion</a>
+					  <?php
+						}
+						else {
+						  ?>
+					   <a href="login.php" class="btn btn-danger">Connexion</a>
+					  <?php
+						}
+					  ?>
+					
+				</form>
+			</div>
+		</nav>
+    <div class="container2 " style="padding-bottom:50px">
+        <h1 class="my-4">Tournois Récents</h1>
+        <div class="row">
+            <div class="col-md-9">
+                <div style=" overflow: auto;">
+                    <table class="heavyTable">
+                        <tbody>
+                            <tr >
+                                <th rowspan="2">#</th>
+                                <th rowspan="2">Team</th>
+                                <th rowspan="2">Points</th>
+                                <th colspan="6">Top Contributors</th>
+                                <th colspan="4">Remaining Players
+                                </th>
+                            </tr>
+                            <tr >
+                                <th> QP </th>
+                                <th> Player 1 </th>
+                                <th> QP </th>
+                                <th> Player 2 </th>
+                                <th> QP </th>
+                                <th> Player 3 </th>
+                                <th> QP </th>
+                                <th> Player 4 </th>
+                                <th> QP </th>
+                                <th> Player 5
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>1</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Team Secret" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Team_Secret" title="Team Secret">
+                                                <img alt="" src="/commons/images/a/a7/Secretdotalogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Team_Secret" title="Team Secret">Team Secret</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>4140</b>
+                                </td>
+                                <td> 1380 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ace" title="Ace">Ace</a>
+                                </td>
+                                <td> 1380 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/MidOne" title="MidOne">MidOne</a>
+                                </td>
+                                <td> 1380 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Fata" title="Fata">Fata</a>
+                                </td>
+                                <td> 1380 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/YapzOr" title="YapzOr">YapzOr</a>
+                                </td>
+                                <td> 1380 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Puppey" title="Puppey">Puppey</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>2</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Team Liquid" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Team_Liquid" title="Team Liquid">
+                                                <img alt="" src="/commons/images/c/cd/Liquid2017logo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Team_Liquid" title="Team Liquid">Team Liquid</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>2700</b>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/MATUMBAMAN" title="MATUMBAMAN">MATUMBAMAN</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Miracle-" title="Miracle-">Miracle-</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/MinD_ContRoL" title="MinD ContRoL">MinD_ContRoL</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/GH" title="GH">GH</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/KuroKy" title="KuroKy">KuroKy</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>2</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Virtus.pro" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Virtus.pro" title="Virtus.pro">
+                                                <img alt="" src="/commons/images/e/e7/Virtuslogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Virtus.pro" title="Virtus.pro">Virtus.pro</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>2700</b>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/RAMZES666" title="RAMZES666">RAMZES666</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Noone" title="Noone">No[o]ne</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/9pasha" title="9pasha">9pasha</a>
+                                </td>
+                                <td> 900 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Lil" title="Lil">Lil</a>
+                                </td>
+                                <td> 765 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Solo" title="Solo">Solo</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>4</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Newbee" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Newbee" title="Newbee">
+                                                <img alt="" src="/commons/images/b/b9/Newbeelogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Newbee" title="Newbee">Newbee</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>1035</b>
+                                </td>
+                                <td> 345 </td>
+                                <td align="left">
+                                
+                                    <a href="/dota2/Moogy" title="Moogy">Moogy</a>
+                                </td>
+                                <td> 345 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Sccc" title="Sccc">Sccc</a>
+                                </td>
+                                <td> 345 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Kpii" title="Kpii">kpii</a>
+                                </td>
+                                <td> 345 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Kaka" title="Kaka">Kaka</a>
+                                </td>
+                                <td> 345 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Faith" title="Faith">Faith</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>5</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Mineski" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Mineski" title="Mineski">
+                                                <img alt="" src="/commons/images/2/2a/Mineski_logo_06-2017_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Mineski" title="Mineski">Mineski</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>810</b>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/NaNa" class="mw-redirect" title="NaNa">NaNa</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/Mushi" title="Mushi">Mushi</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Iceiceice" title="Iceiceice">iceiceice</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Jabz" title="Jabz">Jabz</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ninjaboogie" title="Ninjaboogie">ninjaboogie</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>5</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Vici Gaming" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Vici_Gaming" title="Vici Gaming">
+                                                <img alt="" src="/commons/images/a/ad/Vglogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Vici_Gaming" title="Vici Gaming">Vici Gaming</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>810</b>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Paparazi%E7%81%AC" title="Paparazi灬">Paparazi灬</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ori" title="Ori">Ori</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/ELeVeN" title="ELeVeN">eLeVeN</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/LaNm" title="LaNm">LaNm</a>
+                                </td>
+                                <td> 270 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Fenrir" title="Fenrir">Fenrir</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>7</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Evil Geniuses" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Evil_Geniuses" title="Evil Geniuses">
+                                                <img alt="" src="/commons/images/2/28/Eglogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Evil_Geniuses" title="Evil Geniuses">Evil Geniuses</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>765</b>
+                                </td>
+                                <td> 255 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Arteezy" title="Arteezy">Arteezy</a>
+                                </td>
+                                <td> 255 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Fear" title="Fear">Fear</a>
+                                </td>
+                                <td> 255 </td>
+                                <td align="left">
+                                    <a href="/dota2/Category:Pakistan" title="Pakistan">
+                                        <img alt="Pakistan" src="/commons/images/6/68/Pk.png" width="18" height="12">
+                                    </a>
+                                    <a href="/dota2/SumaiL" title="SumaiL">SumaiL</a>
+                                </td>
+                                <td> 255 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Cr1t-" title="Cr1t-">Cr1t-</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/MISERY" class="mw-redirect" title="MISERY">MISERY</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>8</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="OG" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/OG" title="OG">
+                                                <img alt="" src="/commons/images/b/bc/OG_RB_logo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/OG" title="OG">OG</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>630</b>
+                                </td>
+                                <td> 210 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/N0tail" title="N0tail">N0tail</a>
+                                </td>
+                                <td> 210 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Resolut1on" title="Resolut1on">Resolut1on</a>
+                                </td>
+                                <td> 210 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/S4" title="S4">s4</a>
+                                </td>
+                                <td> 210 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/JerAx" title="JerAx">JerAx</a>
+                                </td>
+                                <td> 210 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Fly" title="Fly">Fly</a>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>
+                                    <b>9</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Fnatic" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Fnatic" title="Fnatic">
+                                                <img alt="" src="/commons/images/4/48/Fnaticlogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Fnatic" title="Fnatic">Fnatic</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>390</b>
+                                </td>
+                                <td> 255 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/UNiVeRsE" title="UNiVeRsE">UNiVeRsE</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/EternalEnvy" class="mw-redirect" title="EternalEnvy">EternalEnvy</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/DJ" title="DJ">DJ</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Pieliedie" title="Pieliedie">Pieliedie</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Abed" title="Abed">Abed</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>10</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Natus Vincere" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Natus_Vincere" title="Natus Vincere">
+                                                <img alt="" src="/commons/images/b/bb/Navilogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Natus_Vincere" title="Natus Vincere">Natus Vincere</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>315</b>
+                                </td>
+                                <td> 105 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Crystallize" title="Crystallize">Crystallize</a>
+                                </td>
+                                <td> 105 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Dendi" title="Dendi">Dendi</a>
+                                </td>
+                                <td> 105 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/GeneRaL" title="GeneRaL">GeneRaL</a>
+                                </td>
+                                <td> 105 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/RodjER" title="RodjER">RodjER</a>
+                                </td>
+                                <td> 105 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/SoNNeikO" title="SoNNeikO">SoNNeikO</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>11</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="TNC Pro Team" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/TNC_Pro_Team" title="TNC Pro Team">
+                                                <img alt="" src="/commons/images/9/98/Tnclogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/TNC_Pro_Team" title="TNC Pro Team">TNC Pro Team</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>270</b>
+                                </td>
+                                <td> 90 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Raven" title="Raven">Raven</a>
+                                </td>
+                                <td> 90 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Kuku" title="Kuku">Kuku</a>
+                                </td>
+                                <td> 90 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Sam_H" title="Sam H">Sam_H</a>
+                                </td>
+                                <td> 90 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/Tims" title="Tims">Tims</a>
+                                </td>
+                                <td> 90 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/1437" title="1437">1437</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>12</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="LGD Gaming" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/LGD_Gaming" title="LGD Gaming">
+                                                <img alt="" src="/commons/images/0/08/Lgdlogo2016_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/LGD_Gaming" title="LGD Gaming">LGD Gaming</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>202.5</b>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ame" title="Ame">Ame</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Somnus%E4%B8%B6M" class="mw-redirect" title="Somnus丶M">Somnus丶M</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Fy" title="Fy">fy</a>
+                                </td>
+                                <td> 67.5 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Yao" title="Yao">Yao</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Chalice" title="Chalice">Chalice</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>13</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="compLexity Gaming" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/CompLexity_Gaming" title="CompLexity Gaming">
+                                                <img alt="" src="/commons/images/f/fb/Complexitylogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/CompLexity_Gaming" title="CompLexity Gaming">compLexity Gaming</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>135</b>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Chessie" title="Chessie">Chessie</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Limmp" title="Limmp">Limmp</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Moo" title="Moo">Moo</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/Zfreek" title="Zfreek">Zfreek</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Melonzz" title="Melonzz">melonzz</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>13</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="LGD.Forever Young" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/LGD.Forever_Young" title="LGD.Forever Young">
+                                                <img alt="" src="/commons/images/4/4e/LGD.FY_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/LGD.Forever_Young" title="LGD.Forever Young">LGD.Forever Young</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>135</b>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Monet" title="Monet">Monet</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Super" title="Super">Super</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Inflame" title="Inflame">Inflame</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ahfu" title="Ahfu">Ahfu</a>
+                                </td>
+                                <td> 45 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ddc" title="Ddc">ddc</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>15</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Immortals" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Immortals" title="Immortals">
+                                                <img alt="" src="/commons/images/8/87/Immortalslogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Immortals" title="Immortals">Immortals</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>90</b>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/QO" title="QO">QO</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/MP" title="MP">MP</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Febby" title="Febby">Febby</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/DuBu" title="DuBu">DuBu</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/MSS" title="MSS">MSS</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>15</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Team Kinguin" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Team_Kinguin" title="Team Kinguin">
+                                                <img alt="" src="/commons/images/3/31/Kinguin_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Team_Kinguin" title="Team Kinguin">Team Kinguin</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>90</b>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Exotic_Deer" title="Exotic Deer">Exotic_Deer</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Nisha" title="Nisha">Nisha</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Patos" title="Patos">Patos</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/EL_lisasH" title="EL lisasH">eL lisasH</a>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Kacor" title="Kacor">kacor</a>
+                                </td>
+                            </tr>
+                            <tr >
+                                <td>
+                                    <b>17</b>
+                                </td>
+                                <td align="left">
+                                    <span data-highlightingclass="Team World" class="team-template-team-standard">
+                                        <span class="team-template-image">
+                                            <a href="/dota2/Team_World" title="Team World">
+                                                <img alt="" src="/commons/images/2/2f/Dotalogo_std.png" width="120" height="50">
+                                            </a>
+                                        </span>
+                                        <span class="team-template-text">
+                                            <a href="/dota2/Team_World" title="Team World">Team World</a>
+                                        </span>
+                                    </span>
+                                </td>
+                                <td>
+                                    <b>30</b>
+                                </td>
+                                <td> 30 </td>
+                                <td align="left">
+                                  
+                                    <a href="/dota2/Forev" title="Forev">Forev</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Ana" title="Ana">ana</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/SVG" title="SVG">SVG</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                   
+                                    <a href="/dota2/Saksa" title="Saksa">Saksa</a>
+                                </td>
+                                <td> 0 </td>
+                                <td align="left">
+                                    
+                                    <a href="/dota2/Keyser" title="Keyser">Keyser</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-2">
+                    <!-- Progres Widget -->
+                    <div class="card my-0 ">
+                         <h5 class="card-header">Progres</h5>
+                        <div class="card-body">
+                                <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 27%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </br>
+                                <h4>24,960 / 92,210</h4>
+                                <h7>27.07% of player qualification points have been allotted</h7>
+                        </div>
+                    </div>
+                   
+                </div>
+        </div>
+       
+    </div>
+    <!-- Footer -->
+	<footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
+            </div>
+            <!-- /.container -->
+        </footer>
+</body>
+   <!-- Bootstrap core JavaScript -->
+   <script src="vendor/jquery/jquery.min.js"></script>
+   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</html>

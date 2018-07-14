@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<?php
+session_start();
+if (!isset($_SESSION['language'])){$_SESSION['language'] = "FR";}
+?>
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dota Tournaments</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="css/blog-home.css" rel="stylesheet">
+		
+		
+		<script  type="text/javascript">
+	function langue(){  
+		$.ajax({
+			type: 'POST',
+			url:'js/langue.php',
+			success: function() {
+				location.reload();
+			}
+		});
+	}
+	</script>
+
+	</head>
+
+	<body>
+
+		<!-- Navigation -->
+		<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Dota</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<?php if($_SESSION['language'] == "FR"){ ?>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a id="accueil" class="nav-link" href="#">Acceuil<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">Tournois </a>
+						<div class="dropdown-menu ">
+							<ul class="multi-column-dropdown">
+								<li class="dropdown-header">Conclus</li>
+								<li><a href="tournois1.php"><img alt="" src="images/tournois/summit8s.png" width="30" height="20"> Summit 8</a></li><br/>
+								<li><a href="tournois2.php"><img alt="" src="images/tournois/mdlmacau.jpg" width="30" height="20"> MDL Macau</a></li><br/>
+								<li><a href="tournois3.php"><img alt="" src="images/tournois/DHDLS8.png" width="30" height="20"> DreamLeague 8</a></li><br/>										
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="classements.php">Classements</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					 <a href="login.php" onClick='langue()'class="btn btn-primary" style="margin-right:10px">FR</a>
+					<?php
+					   if(isset($_SESSION['util'])) {
+					  ?>
+						<a href="DataLayer/BusinessLayer/deconnection.php" class="btn btn-danger">Déconnexion</a>
+					  <?php
+						}
+						else {
+						  ?>
+					   <a href="login.php" class="btn btn-danger">Connexion</a>
+					  <?php
+						}
+					  ?>
+					
+				</form>
+			</div>
+			<?php }else{ ?>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a id="accueil" class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download" aria-expanded="false">Tounaments </a>
+						<div class="dropdown-menu ">
+							<ul class="multi-column-dropdown">
+								<li class="dropdown-header">Finished</li>
+								<li><a href="tournois1.php"><img alt="" src="images/tournois/summit8s.png" width="30" height="20"> Summit 8</a></li><br/>
+								<li><a href="tournois2.php"><img alt="" src="images/tournois/mdlmacau.jpg" width="30" height="20"> MDL Macau</a></li><br/>
+								<li><a href="tournois3.php"><img alt="" src="images/tournois/DHDLS8.png" width="30" height="20"> DreamLeague 8</a></li><br/>										
+							</ul>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="classements.php">Rankings</a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+					 <a href="login.php" onClick='langue()'class="btn btn-primary" style="margin-right:10px">EN</a>
+					<?php
+					   if(isset($_SESSION['util'])) {
+					  ?>
+						<a href="DataLayer/BusinessLayer/deconnection.php" class="btn btn-danger">Logout</a>
+					  <?php
+						}
+						else {
+						  ?>
+					   <a href="login.php" class="btn btn-danger">Login</a>
+					  <?php
+						}
+					  ?>
+					
+				</form>
+			</div>
+			<?php } ?>
+		</nav>
+
+		<!-- Page Content -->
+		<div class="container ">
+			<?php if($_SESSION['language'] == "FR"){ ?>
+			<h1 class="my-4">Tournois Récents</h1>
+			 <?php
+			}
+			else {
+			?>
+			<h1 class="my-4">Recent Tournaments</h1>
+			<?php
+			}
+			?>
+			
+			<div class="row">
+				
+				<!-- Blog Entries Column -->
+				<div class="col-md-8">
+					
+					<!-- Blog Post -->
+					<div class="card mb-4">
+						<img class="card-img-top" src="images/tournois/summit8.png" width="750" height="300" alt="Card image cap">
+						<div class="card-body">
+							<h2 class="card-title text-danger">DOTA Summit 8 - Minor</h2>
+							
+						<?php if($_SESSION['language'] == "FR"){ ?>
+						<a href="#" class="btn btn-danger">Lire Plus &rarr;</a>
+						 <?php
+						}
+						else {
+						?>
+						<a href="#" class="btn btn-danger">Read More &rarr;</a>
+						<?php
+						}
+						?>
+						</div>
+					</div>
+					
+					<!-- Blog Post -->
+					<div class="card mb-4">
+						<img class="card-img-top" src="images/tournois/mdlmacau.jpg" width="750" height="300" alt="Card image cap">
+						<div class="card-body">
+							<h2 class="card-title text-danger">MDL Macau</h2>
+							<?php if($_SESSION['language'] == "FR"){ ?>
+			<a href="#" class="btn btn-danger">Lire Plus &rarr;</a>
+			 <?php
+			}
+			else {
+			?>
+			<a href="#" class="btn btn-danger">Read More &rarr;</a>
+			<?php
+			}
+			?>
+						</div>
+					</div>
+					
+					<!-- Blog Post -->
+					<div class="card mb-4">
+						<img class="card-img-top" src="images/tournois/DHDLS8.png" width="750" height="300" alt="Card image cap">
+						<div class="card-body">
+							<h2 class="card-title text-danger">ROG DreamLeague Season 8</h2>
+							<?php if($_SESSION['language'] == "FR"){ ?>
+			<a href="#" class="btn btn-danger">Lire Plus &rarr;</a>
+			 <?php
+			}
+			else {
+			?>
+			<a href="#" class="btn btn-danger">Read More &rarr;</a>
+			<?php
+			}
+			?>
+						</div>
+					</div>
+					
+					<!-- Pagination -->
+					<ul class="pagination justify-content-center mb-4">
+						<li class="page-item">
+						<?php if($_SESSION['language'] == "FR"){ ?>
+						<a class="page-link" href="#">&larr; Prec</a>
+						 <?php
+						}
+						else {
+						?>
+						<a class="page-link" href="#">&larr; Older</a>
+						<?php
+						}
+						?>
+						</li>
+						<li class="page-item disabled">
+						<?php if($_SESSION['language'] == "FR"){ ?>
+						<a class="page-link" href="#">Suiv&rarr;</a>
+						 <?php
+						}
+						else {
+						?>
+						<a class="page-link" href="#">Newer &rarr;</a>
+						<?php
+						}
+						?>
+							
+						</li>
+					</ul>
+				</div>
+				
+				<!--Widgets -->
+				<div class="col-md-4">
+
+
+					<!-- Classements Widget -->
+					<div class="card my-0">
+						<?php if($_SESSION['language'] == "FR"){ ?>
+						<h5 class="card-header">Classements</h5>
+						 <?php
+						}
+						else {
+						?>
+						<h5 class="card-header">Rankings</h5>
+						<?php
+						}
+						?>
+						<div class="card-body1">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+									<?php if($_SESSION['language'] == "FR"){ ?>
+									<th scope="col">#</th>
+										<th scope="col">Equipe </th>
+										<th scope="col">Points </th>
+									 <?php
+									}
+									else {
+									?>
+									<th scope="col">#</th>
+										<th scope="col">Teams </th>
+										<th scope="col">Points </th>
+									<?php
+									}
+									?>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-dark">
+										<th scope="row">1</th>
+										<td><img alt="" src="images/secret.png" width="50" height="30"><a href="url" style="color:red">Team Secret</a></td>
+										<td>3000pts</td>
+									</tr>
+									<tr class="table-dark">
+										<th scope="row">2</th>
+										<td><img alt="" src="images/liquid.png" width="50" height="30"><a href="url" style="color:red">Team Liquid</a></td>
+										<td>2000pts</td>
+									</tr>
+									<tr class="table-dark">
+										<th scope="row">3</th>
+										<td><img alt="" src="images/virtus.png" width="50" height="30"><a href="url" style="color:red">Virtus Pro</a></td>
+										<td>1999pts</td>
+									</tr>
+									<tr class="table-dark">
+										<th scope="row">4</th>
+										<td><img alt="" src="images/newbee.png" width="50" height="30"><a href="url" style="color:red">Newbee</a></td>
+										<td>1500pts</td>
+									</tr>
+								</tbody>
+							</table> 
+						</div>
+					</div>
+
+					<!-- Upcoming Matches Widget -->
+					<div class="card my-4">
+					<?php if($_SESSION['language'] == "FR"){ ?>
+									<h5 class="card-header">Matchs a venir</h5>
+									 <?php
+									}
+									else {
+									?>
+									<h5 class="card-header">Upcoming Matches</h5>
+									<?php
+									}
+									?>
+						
+						<div class="card-body">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+									<?php if($_SESSION['language'] == "FR"){ ?>
+									<th scope="col">ETA</th>
+										<th scope="col">Equipes </th>
+										<th scope="col">Serie </th>
+									 <?php
+									}
+									else {
+									?>
+									<th scope="col">ETA</th>
+										<th scope="col">Teams </th>
+										<th scope="col">Series </th>
+									<?php
+									}
+									?>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="table-dark">
+										<th scope="row"><p id="timer1"></th>
+										<td><img alt="" src="images/secret.png" width="25" height="15"><a href="url" style="color:red">Secret</a> 
+											<br/><img alt="" src="images/newbee.png" width="25" height="15"><a href="url" style="color:red">Newbee</a>
+										</td>
+										<td>Captains Draft</td>
+									</tr>
+									<tr class="table-dark">
+										<th scope="row"><p id="timer2"></th>
+										<td><img alt="" src="images/virtus.png" width="25" height="15"><a href="url" style="color:red">Virtus Pro</a>
+											<br/><img alt="" src="images/liquid.png" width="25" height="15"><a href="url" style="color:red">Team Liquid</a>
+										</td>
+										<td>Captains Draft</td>
+									</tr>
+									<tr class="table-dark">
+										<th scope="row"><p id="timer3"></th>
+										<td><img alt="" src="images/secret.png" width="25" height="15"><a href="url" style="color:red">Secret</a> 
+											<br/><img alt="" src="images/virtus.png" width="25" height="15"><a href="url" style="color:red">Virtus Pro</a>
+										</td>
+										<td>Captains Draft</td>
+									</tr>
+										<tr class="table-dark">
+										<th scope="row"><p id="timer4"></th>
+										<td><img alt="" src="images/liquid.png" width="25" height="15"><a href="url" style="color:red">Team Liquid</a> 
+											<br/><img alt="" src="images/newbee.png" width="25" height="15"><a href="url" style="color:red">Newbee</a>
+										</td>
+										<td>Captains Draft</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- /.row -->
+
+		</div>
+		<!-- /.container -->
+
+		<!-- Footer -->
+		<footer class="py-5 bg-dark">
+			<div class="container">
+				<p class="m-0 text-center text-white">Copyright &copy; Jean 2017</p>
+				
+				
+			</div>
+			<!-- /.container -->
+			
+		</footer>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- CountDown JavaScript -->
+		<script src="compte.js"></script>
+
+	</body>
+
+</html>
+
+
+
+
